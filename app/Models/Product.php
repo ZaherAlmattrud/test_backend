@@ -14,6 +14,8 @@ class Product extends Model
 
     public $timestamps = false;
 
+   // protected $primaryKey = 'ProductId';
+
     protected $guarded = [''];
 
     public function supplier(){

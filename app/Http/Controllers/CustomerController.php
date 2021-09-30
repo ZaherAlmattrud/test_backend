@@ -5,16 +5,39 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+use App\Http\Controllers\BaseController ;
+
+use App\Repositories\IRepositories\ICustomerRepository;
+
+use App\Http\Resources\CustomerResource;
+
+use App\Http\Requests\StoreCustomer;
+
+class CustomerController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public $customer;
+
+
+    public function __construct(ICustomerRepository $customer)
+    {
+        $this->customer = $customer;
+    }
+
+
     public function index()
     {
         //
+
+        $customers = $this->customer->index();
+
+        return $this->sendResponse(CustomerResource::collection($customers), 'allCustomers retrieved successfully.');
+
     }
 
     /**
@@ -33,9 +56,14 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCustomer $request)
     {
         //
+
+        $customer = $this->customer->store($request);
+
+        return $this->sendResponse(new CustomerResource($customer), 'Customer created successfully.');
+ 
     }
 
     /**
@@ -44,9 +72,16 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show($id)
     {
         //
+
+        $customer = $this->customer->show($id);
+
+        return $this->sendResponse(new CustomerResource($customer), 'Customer retrieved successfully.');
+    
+
+
     }
 
     /**
@@ -67,9 +102,14 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, $id)
     {
         //
+
+        $customer =  $this->customer->update($id, $request->except('_method'));
+
+        return $this->sendResponse(new CustomerResource($customer), 'Customer updated successfully.');
+
     }
 
     /**
@@ -78,8 +118,13 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy($id)
     {
         //
+
+        $this->customer->destroy($id);
+
+        return $this->sendResponse([], 'Customer deleted successfully.');
+
     }
 }

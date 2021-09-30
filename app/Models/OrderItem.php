@@ -14,6 +14,8 @@ class OrderItem extends Model
 
     public $timestamps = false;
 
+   // protected $primaryKey = 'OrderId';
+
     protected $guarded = [''];
 
 

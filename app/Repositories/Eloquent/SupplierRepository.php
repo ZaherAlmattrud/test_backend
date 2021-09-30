@@ -47,25 +47,17 @@ class SupplierRepository implements ISupplierRepository
 
     public function update($id , $collection = [] ){
 
+        // find resource
+
         $supplier = Supplier::findOrFail($id);
 
-        $supplier->CompanyName	 = $collection['CompanyName'];
+        // Update only passed descriptor values
 
-        $supplier->ContactName	 = $collection['ContactName'];
-
-        $supplier->City	 = $collection['City'];
-
-        $supplier->Country	 = $collection['Country'];
-
-        $supplier->Phone	 = $collection['Phone'];
-
-        $supplier->Fax	 = $collection['Fax'];
+        $supplier->update($collection);
 
         $supplier->save();
 
         return $supplier ;
-
-     //   Supplier::where('id', $id)->update($collection);
 
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController ;
 use App\Repositories\IRepositories\ISupplierRepository;
 use App\Http\Resources\SupplierResource;
+use App\Http\Requests\StoreSupplier;
 
 class SupplierController extends BaseController
 {
@@ -49,7 +50,7 @@ class SupplierController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSupplier $request)
     {
 
        $supplier = $this->supplier->store($request);

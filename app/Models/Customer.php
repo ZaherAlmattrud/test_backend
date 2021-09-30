@@ -14,6 +14,8 @@ class Customer extends Model
 
     public $timestamps = false;
 
+    //protected $primaryKey = 'CustomerId';
+
     protected $guarded = [''];
 
 

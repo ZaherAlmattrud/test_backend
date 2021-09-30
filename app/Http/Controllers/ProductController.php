@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-use App\Repository\IRepositories\ISupplierRepository;
+use App\Repositories\IRepositories\IProductRepository;
 
-class ProductController extends Controller
+use App\Http\Resources\ProductResource;
+
+use App\Http\Requests\StoreProduct;
+
+use App\Http\Controllers\BaseController ;
+
+class ProductController extends BaseController 
+
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +23,14 @@ class ProductController extends Controller
      */
 
 
+    public $product;
+
+
+    public function __construct(IProductRepository $product)
+    {
+        $this->product = $product;
+    }
+
   
 
 
@@ -23,7 +38,10 @@ class ProductController extends Controller
     {
         //
 
-    
+        $products = $this->product->index();
+
+        return $this->sendResponse(ProductResource::collection($products), 'allProducts retrieved successfully.');
+
 
     }
 
@@ -43,9 +61,14 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
         //
+
+        $product = $this->product->store($request);
+
+        return $this->sendResponse(new ProductResource($product), 'Product created successfully.');
+ 
     }
 
     /**
@@ -57,6 +80,11 @@ class ProductController extends Controller
     public function show($id)
     {
         //
+
+        $product = $this->product->show($id);
+
+        return $this->sendResponse(new ProductResource($product), 'Product retrieved successfully.');
+    
 
        
     }
@@ -79,9 +107,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
+
         //
+        $product =  $this->product->update($id, $request->except('_method'));
+
+        return $this->sendResponse(new ProductResource($product), 'Product updated successfully.');
+
     }
 
     /**
@@ -90,9 +123,13 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
+
+        $this->product->destroy($id);
+
+        return $this->sendResponse([], 'Product deleted successfully.');
 
         
     }

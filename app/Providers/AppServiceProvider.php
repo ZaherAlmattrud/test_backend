@@ -4,17 +4,23 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Repositories\IRepositories\{
+use App\Repositories\IRepositories\ISupplierRepository;
+use App\Repositories\Eloquent\SupplierRepository;
 
-	ISupplierRepository,
+use App\Repositories\IRepositories\IProductRepository;
+use App\Repositories\Eloquent\ProductRepository;
 
-};
+use App\Repositories\IRepositories\ICustomerRepository;
+use App\Repositories\Eloquent\CustomerRepository;
 
-use App\Repositories\Eloquent\{
+use App\Repositories\IRepositories\IOrderRepository;
+use App\Repositories\Eloquent\OrderRepository;
 
-	SupplierRepository,
+use App\Repositories\IRepositories\IOrderItemRepository;
+use App\Repositories\Eloquent\OrderItemRepository;
+ 
 
-};
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,8 +32,15 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-
         $this->app->bind(ISupplierRepository::class, SupplierRepository::class);
+
+        $this->app->bind(IProductRepository::class, ProductRepository::class);
+
+        $this->app->bind(ICustomerRepository::class, CustomerRepository::class);
+
+        $this->app->bind(IOrderRepository::class, OrderRepository::class);
+
+        $this->app->bind(IOrderItemRepository::class, OrderItemRepository::class);
     }
 
     /**

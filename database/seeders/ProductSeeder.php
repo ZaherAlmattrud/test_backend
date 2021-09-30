@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
 
             "ProductName"=>"Chai",
 
-            "SupplierId"=>1,
+            "supplier_id"=>1,
 
             "UnitPrice"=>150,
 
@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
 
             "ProductName"=>"Rice",
 
-            "SupplierId"=>1,
+            "supplier_id"=>1,
 
             "UnitPrice"=>300,
 
@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
 
             "ProductName"=>"Sugar",
 
-            "SupplierId"=>2,
+            "supplier_id"=>2,
 
             "UnitPrice"=>250,
 
@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
 
             "ProductName"=>"Biscuit",
 
-            "SupplierId"=>3,
+            "supplier_id"=>3,
 
             "UnitPrice"=>500,
 

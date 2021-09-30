@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
 
             $table->string('ProductName',50);
 
-            $table->foreignId('SupplierId');
+            $table->foreignId('supplier_id');
         
             $table->decimal('UnitPrice', 12, 2);
 

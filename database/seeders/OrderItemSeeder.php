@@ -19,9 +19,9 @@ class OrderItemSeeder extends Seeder
 
         $orderitem_1 = OrderItem::create([
 
-            "OrderId"=>1 ,
+            "order_id"=>1 ,
 
-            "ProductId"=>4 ,
+            "product_id"=>4 ,
 
             "UnitPrice"=>500,
 
@@ -31,9 +31,9 @@ class OrderItemSeeder extends Seeder
 
         $orderitem_2 = OrderItem::create([
 
-            "OrderId"=>2 ,
+            "order_id"=>2 ,
 
-            "ProductId"=>3 ,
+            "product_id"=>3 ,
 
             "UnitPrice"=>300,
 
@@ -43,9 +43,9 @@ class OrderItemSeeder extends Seeder
 
         $orderitem_2 = OrderItem::create([
 
-            "OrderId"=>2 ,
+            "order_id"=>2 ,
 
-            "ProductId"=>2 ,
+            "product_id"=>2 ,
 
             "UnitPrice"=>300,
 

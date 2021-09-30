@@ -21,7 +21,7 @@ class OrderSeeder extends Seeder
 
            "OrderDate"=>"2020-7-5" ,
            "OrderNumber"=>"5" ,
-           "CustomerId"=>1,
+           "customer_id"=>1,
            "TotalAmount"=>1000,
            
         ]);
@@ -30,7 +30,7 @@ class OrderSeeder extends Seeder
 
             "OrderDate"=>"2020-8-14" ,
             "OrderNumber"=>"8" ,
-            "CustomerId"=>2,
+            "customer_id"=>2,
             "TotalAmount"=>600,
             
          ]);

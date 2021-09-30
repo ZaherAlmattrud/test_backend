@@ -14,6 +14,8 @@ class Order extends Model
 
     public $timestamps = false;
 
+   // protected $primaryKey = 'OrderId';
+
     
 
     protected $guarded = [''];
@@ -30,4 +32,23 @@ class Order extends Model
         return $this->hasMany(Orderitem::class);
 
     }
+
+    public function TotalAmount(){
+
+          $totalAmount = 0;
+
+        foreach ($this->orderitems as $orderItem) {
+
+ 
+         $totalAmount = $totalAmount + (  $orderItem->UnitPrice *  $orderItem->Quantity) ;
+
+        }
+
+          return $totalAmount;
+
+
+         
+    }
+
+
 }

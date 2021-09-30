@@ -14,6 +14,8 @@ class Supplier extends Model
 
     public $timestamps = false;
 
+   // protected $primaryKey = 'SupplierId';
+
     // (notes)
 
     //  fillable attributes are used to specify those fields which are to be mass assigned.

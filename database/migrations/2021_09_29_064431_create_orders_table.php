@@ -29,9 +29,11 @@ class CreateOrdersTable extends Migration
 
             $table->string('OrderNumber',10);
 
-            $table->foreignId('CustomerId');
+            $table->foreignId('customer_id');
 
-            $table->decimal('TotalAmount', 12, 2);
+           
+            // calculated value
+             $table->decimal('TotalAmount', 12, 2)->nullable();
 
             $table->softDeletes();
 
