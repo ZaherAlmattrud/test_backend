@@ -23,7 +23,7 @@ class ProductRepository implements IProductRepository
 
         $product->ProductName = $collection['ProductName'];
 
-        $product->SupplierId = $collection['supplier_id'];
+        $product->supplier_id = $collection['SupplierId'];
 
         $product->UnitPrice = $collection['UnitPrice'];
 

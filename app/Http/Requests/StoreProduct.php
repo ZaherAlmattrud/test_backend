@@ -28,7 +28,7 @@ class StoreProduct extends FormRequest
 
             'ProductName'  => 'required|string' ,
 
-            'supplier_id' => 'required|exists:suppliers,id',
+            'SupplierId' => 'required|exists:suppliers,id',
 
             'UnitPrice'=>'required|numeric'
           
@@ -42,9 +42,9 @@ class StoreProduct extends FormRequest
 
             'CompanyName.required' => __('messages.roles.required'),
 
-            'supplier_id.required' => __('messages.roles.required'),
+            'SupplierId.required' => __('messages.roles.required'),
 
-            'supplier_id.exists' => __('messages.roles.exists'),
+            'SupplierId.exists' => __('messages.roles.exists'),
 
             'UnitPrice.required'=> __('messages.roles.required')  ,
 
