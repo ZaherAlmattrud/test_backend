@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Contracts\Validation\Validator;
 
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 class StoreProduct extends FormRequest
 {
     /**
@@ -46,7 +48,7 @@ class StoreProduct extends FormRequest
 
             'supplier_id.required' => __('messages.roles.required'),
 
-            'supplier_id.exists' => __('messages.roles.exists'),
+            'supplier_id.exists' => 'Supplier id : '. __('messages.roles.exists'),
 
             'UnitPrice.required'=> __('messages.roles.required')  ,
 
