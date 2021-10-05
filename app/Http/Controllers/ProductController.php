@@ -11,6 +11,11 @@ use App\Http\Resources\ProductResource;
 
 use App\Http\Requests\StoreProduct;
 
+use Illuminate\Support\Facades\Validator;
+
+ 
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 use App\Http\Controllers\BaseController ;
 
 class ProductController extends BaseController 
@@ -110,10 +115,38 @@ class ProductController extends BaseController
     public function update(Request $request, $id)
     {
 
-        //
-        $product =  $this->product->update($id, $request->except('_method'));
+        
+ 
+    $validator = Validator::make($request->all(),[
 
-        return $this->sendResponse(new ProductResource($product), 'Product updated successfully.');
+        'supplier_id' => 'required|exists:suppliers,id',
+        
+    ]);
+
+    if( $validator->fails() ){
+
+        $errors = $validator->errors();
+
+        $response = response()->json([
+
+            'message' => 'Invalid data send',
+
+            'details' => $errors->messages(),
+
+        ], 422);
+    
+        throw new HttpResponseException($response);
+
+    } else {
+
+        
+
+     $product =  $this->product->update($id, $request->except('_method'));
+
+     return $this->sendResponse(new ProductResource($product), 'Product updated successfully.');
+        
+    }
+
 
     }
 
@@ -126,11 +159,9 @@ class ProductController extends BaseController
     public function destroy($id)
     {
         //
-
         $this->product->destroy($id);
 
         return $this->sendResponse([], 'Product deleted successfully.');
 
-        
     }
 }

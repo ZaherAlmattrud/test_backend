@@ -23,7 +23,7 @@ class ProductRepository implements IProductRepository
 
         $product->ProductName = $collection['ProductName'];
 
-        $product->supplier_id = $collection['SupplierId'];
+        $product->supplier_id = $collection['supplier_id'];
 
         $product->UnitPrice = $collection['UnitPrice'];
 
@@ -46,6 +46,11 @@ class ProductRepository implements IProductRepository
         $product = Product::findOrFail($id);
 
         // Update only passed descriptor values
+
+       // 'supplier_id' => 'required|exists:suppliers,id',
+
+         
+
 
         $product->update($collection);
 

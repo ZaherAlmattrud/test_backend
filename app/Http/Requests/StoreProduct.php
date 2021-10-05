@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Contracts\Validation\Validator;
+
 class StoreProduct extends FormRequest
 {
     /**
@@ -28,7 +30,7 @@ class StoreProduct extends FormRequest
 
             'ProductName'  => 'required|string' ,
 
-            'SupplierId' => 'required|exists:suppliers,id',
+            'supplier_id' => 'required|exists:suppliers,id',
 
             'UnitPrice'=>'required|numeric'
           
@@ -42,9 +44,9 @@ class StoreProduct extends FormRequest
 
             'CompanyName.required' => __('messages.roles.required'),
 
-            'SupplierId.required' => __('messages.roles.required'),
+            'supplier_id.required' => __('messages.roles.required'),
 
-            'SupplierId.exists' => __('messages.roles.exists'),
+            'supplier_id.exists' => __('messages.roles.exists'),
 
             'UnitPrice.required'=> __('messages.roles.required')  ,
 
@@ -54,4 +56,17 @@ class StoreProduct extends FormRequest
         ];
 
      }
+
+     protected function failedValidation(Validator $validator)
+     {
+         $errors = $validator->errors();
+     
+         $response = response()->json([
+             'message' => 'Invalid data send',
+             'details' => $errors->messages(),
+         ], 422);
+     
+         throw new HttpResponseException($response);
+     }
+
 }
