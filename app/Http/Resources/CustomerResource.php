@@ -29,6 +29,8 @@ class CustomerResource extends JsonResource
 
             'Phone' => $this->Phone,
 
+            'FullName'=>$this->$this->FirstName .' '.$this->LastName,
+
        ];
 
        
